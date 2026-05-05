@@ -31,13 +31,13 @@ export default function Hero() {
       <p className="hero-eyebrow">· Arthur Bernardo · Barví Aura Estúdio ·</p>
 
       <h1 className="hero-title">
-        te ajudo a transformar<br />
+        Te ajudo a transformar<br />
         sua marca em <em>autoridade</em><br />
         magnética
       </h1>
 
       <p className="hero-sub">
-        desde 2016 construindo marcas que dominam a percepção — não por sorte, por neurociência aplicada
+        Desde 2016 construindo marcas que dominam a percepção — não por sorte, por neurociência aplicada
       </p>
 
       <a href="https://wa.me/5548996534721" className="hero-cta">
