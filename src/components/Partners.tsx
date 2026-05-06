@@ -9,6 +9,8 @@ const CURRENT = [
   'Buss & Siementcoski', 'Rei Cell', 'Pousada Vale da Ímbuia', 'Lalaio',
 ]
 
+const ALL_BRANDS = [...PAST, ...CURRENT]
+
 export default function Partners() {
   return (
     <section id="marcas">
@@ -19,23 +21,9 @@ export default function Partners() {
           </h2>
         </div>
 
-        <div className="reveal" style={{ marginBottom: 48 }}>
-          <p style={{ textAlign: 'center', fontSize: 10, letterSpacing: '0.4em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 20 }}>
-            Colaborações anteriores
-          </p>
-          <div className="marcas-grid">
-            {PAST.map(name => (
-              <div className="marca-item" key={name}>{name}</div>
-            ))}
-          </div>
-        </div>
-
         <div className="reveal">
-          <p style={{ textAlign: 'center', fontSize: 10, letterSpacing: '0.4em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 20 }}>
-            Colaborações atuais
-          </p>
-          <div className="marcas-grid" style={{ maxWidth: 600 }}>
-            {CURRENT.map(name => (
+          <div className="marcas-grid">
+            {ALL_BRANDS.map(name => (
               <div className="marca-item" key={name}>{name}</div>
             ))}
           </div>
