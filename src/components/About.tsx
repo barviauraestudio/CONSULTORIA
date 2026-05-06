@@ -13,7 +13,7 @@ export default function About() {
       <div className="cw">
         <div className="reveal">
           <h2 className="sobre-headline">
-            se você é bom, o<br />
+            Se você é bom, o<br />
             <em>mundo precisa saber.</em>
           </h2>
         </div>
