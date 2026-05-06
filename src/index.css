@@ -51,8 +51,12 @@ body {
   overflow-x: hidden; -webkit-font-smoothing: antialiased;
 }
 
-/* Make all sections sit above the fixed bg canvas */
-#nav, main, footer, #scroll-bar, #back-to-top, #audioBtn { position: relative; z-index: 1; }
+/* Stacking: nav/ui elements float above canvas.
+   IMPORTANT: main and footer must NOT get position+z-index or they create
+   a new stacking context that blocks backdrop-filter from seeing #bg-canvas. */
+#scroll-bar  { z-index: 1000; }
+#back-to-top { z-index: 500;  }
+/* audioBtn z-index handled inline in AudioPlayer.tsx */
 
 /* ── SCROLL BAR ── */
 #scroll-bar {
@@ -248,10 +252,10 @@ body {
 .photo-placeholder-icon { display: none; }
 .photo-placeholder p { display: none; }
 .dores-content {
-  background: rgba(15,10,12,0.55);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border-left: 1px solid rgba(201,169,110,0.10);
+  background: rgba(10,6,8,0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-left: 1px solid rgba(201,169,110,0.12);
   padding: clamp(40px,6vw,80px) clamp(24px,5vw,64px);
   display: flex; flex-direction: column; justify-content: center;
 }
@@ -278,9 +282,7 @@ body {
 
 /* ═══════════════ BENEFITS ═══════════════ */
 #beneficios {
-  background: rgba(23,16,15,0.45);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(15,9,11,0.30);
   padding: clamp(56px,8vw,100px) clamp(20px,5vw,60px); text-align: center;
 }
 .beneficios-title {
@@ -293,15 +295,15 @@ body {
   gap: clamp(10px,2vw,20px); max-width: 1100px; margin: 0 auto;
 }
 .beneficio-card {
-  border: 1px solid rgba(201,169,110,0.18);
+  border: 1px solid rgba(201,169,110,0.20);
   padding: clamp(22px,3vw,40px) clamp(14px,2vw,28px);
-  background: rgba(30,21,18,0.55);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(20,13,11,0.60);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   text-align: center;
   transition: border-color .35s, transform .35s, background .35s;
 }
-.beneficio-card:hover { border-color: var(--border2); transform: translateY(-5px); background: rgba(30,21,18,0.75); }
+.beneficio-card:hover { border-color: var(--border2); transform: translateY(-5px); background: rgba(20,13,11,0.80); }
 .beneficio-icon {
   width: 44px; height: 44px; margin: 0 auto clamp(12px,2vw,22px);
   border: 1px solid var(--border2);
@@ -356,11 +358,10 @@ body {
 
 /* ═══════════════ HOW IT WORKS ═══════════════ */
 #como-funciona {
-  background: rgba(15,10,12,0.45);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(10,6,8,0.28);
   padding: clamp(56px,8vw,100px) clamp(20px,5vw,60px); text-align: center;
 }
+
 .como-title {
   font-family: var(--serif); font-size: clamp(24px,4vw,54px);
   font-weight: 400; color: var(--cream); margin-bottom: clamp(36px,6vw,68px);
@@ -371,14 +372,14 @@ body {
   max-width: 980px; margin: 0 auto;
 }
 .como-step {
-  flex: 1; border: 1px solid rgba(201,169,110,0.16);
+  flex: 1; border: 1px solid rgba(201,169,110,0.18);
   padding: clamp(24px,4vw,44px) clamp(18px,3vw,32px);
-  background: rgba(30,21,18,0.52);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(18,11,9,0.62);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   text-align: center; transition: border-color .3s, background .3s;
 }
-.como-step:hover { border-color: var(--border2); background: rgba(30,21,18,0.72); }
+.como-step:hover { border-color: var(--border2); background: rgba(18,11,9,0.82); }
 .como-step-icon {
   width: 52px; height: 52px; margin: 0 auto clamp(12px,2vw,22px);
   background: var(--card); border: 1px solid var(--border2);
@@ -396,9 +397,7 @@ body {
 
 /* ═══════════════ RESULTS ═══════════════ */
 #resultados {
-  background: rgba(23,16,15,0.42);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(15,9,11,0.28);
   padding: clamp(56px,8vw,100px) clamp(20px,5vw,60px);
 }
 .resultados-title {
@@ -414,15 +413,15 @@ body {
 }
 .resultados-col { display: flex; flex-direction: column; gap: clamp(12px,2vw,24px); }
 .chat-bubble {
-  background: rgba(30,21,18,0.58);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(201,169,110,0.16);
+  background: rgba(18,11,9,0.62);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(201,169,110,0.18);
   padding: clamp(14px,2.5vw,24px); border-radius: 2px;
   font-size: clamp(12px,1.6vw,13px); line-height: 1.75; color: var(--text);
   transition: border-color .3s, background .3s;
 }
-.chat-bubble:hover { border-color: var(--border2); background: rgba(30,21,18,0.78); }
+.chat-bubble:hover { border-color: var(--border2); background: rgba(18,11,9,0.82); }
 .chat-author {
   font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
   color: var(--gold); margin-top: 10px;
@@ -437,9 +436,7 @@ body {
 
 /* ═══════════════ INVESTMENT ═══════════════ */
 #investimento {
-  background: rgba(8,4,6,0.48);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(8,4,6,0.28);
   padding: clamp(56px,8vw,100px) clamp(20px,5vw,60px);
 }
 .investimento-inner {
@@ -565,9 +562,7 @@ body {
 
 /* ═══════════════ PARTNERS ═══════════════ */
 #marcas {
-  background: rgba(23,16,15,0.48);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(15,9,11,0.28);
   padding: clamp(56px,8vw,100px) clamp(20px,5vw,60px);
 }
 .marcas-headline {
@@ -589,19 +584,17 @@ body {
   border: 1px solid var(--border);
   padding: clamp(16px,2.5vw,28px) clamp(10px,2vw,20px);
   text-align: center;
-  background: rgba(15,10,12,0.52);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(12,7,9,0.60);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   font-size: clamp(11px,1.5vw,13px); color: var(--muted);
   letter-spacing: .05em; transition: all .3s;
 }
-.marca-item:hover { border-color: var(--border2); color: var(--goldlt); background: rgba(30,21,18,0.72); }
+.marca-item:hover { border-color: var(--border2); color: var(--goldlt); background: rgba(12,7,9,0.80); }
 
 /* ═══════════════ FAQ ═══════════════ */
 #faq {
-  background: rgba(15,10,12,0.44);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(10,6,8,0.28);
   padding: clamp(56px,8vw,100px) clamp(20px,5vw,60px);
 }
 .faq-title {
@@ -611,7 +604,7 @@ body {
 }
 .faq-title em { color: var(--gold); font-style: italic; }
 .faq-list { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 2px; }
-.faq-item { border: 1px solid var(--border); background: rgba(23,16,15,0.55); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); overflow: hidden; transition: border-color .3s; }
+.faq-item { border: 1px solid var(--border); background: rgba(14,9,11,0.62); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); overflow: hidden; transition: border-color .3s; }
 .faq-item.open { border-color: var(--border2); }
 .faq-q {
   width: 100%; display: flex; align-items: center; justify-content: space-between;
@@ -637,9 +630,7 @@ body {
 
 /* ═══════════════ CLOSING ═══════════════ */
 #closing {
-  background: rgba(8,4,6,0.50);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(8,4,6,0.28);
   padding: clamp(72px,10vw,120px) clamp(20px,5vw,60px); text-align: center;
 }
 .closing-text {
