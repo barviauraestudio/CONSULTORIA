@@ -6,17 +6,17 @@ export default function WhatYouGain() {
       <div className="conquistas-content">
         <div className="reveal">
           <h2 className="conquistas-title">
-            o que você vai<br />
+            O que você vai<br />
             <em>conquistar</em> com meu<br />
             direcionamento:
           </h2>
           <ul className="conquistas-list">
             {[
-              { b: 'clareza', t: 'sobre quem você é e como se comunicar com autoridade' },
-              { b: 'narrativa', t: 'que atravessa o olhar e cria desejo real no seu público' },
-              { b: 'segurança', t: 'para aparecer, ser visto e gerar percepção de valor' },
-              { b: 'consistência', t: 'estética e estratégica em cada ponto de contato' },
-              { b: 'plano de ação', t: 'personalizado e pronto para aplicar de imediato' },
+              { b: 'Clareza', t: 'sobre quem você é e como se comunicar com autoridade' },
+              { b: 'Narrativa', t: 'que atravessa o olhar e cria desejo real no seu público' },
+              { b: 'Segurança', t: 'para aparecer, ser visto e gerar percepção de valor' },
+              { b: 'Consistência', t: 'estética e estratégica em cada ponto de contato' },
+              { b: 'Plano de ação', t: 'personalizado e pronto para aplicar de imediato' },
             ].map((item, i) => (
               <li key={i}>
                 <span className="conquistas-check">
