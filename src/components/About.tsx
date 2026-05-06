@@ -67,7 +67,7 @@ export default function About() {
               <div className="sobre-insta-grid">
                 {INSTA_PHOTOS.map((src, i) => (
                   <a
-                    href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                    href="https://www.instagram.com/barviauraestudio/" target="_blank" rel="noopener noreferrer"
                     className="insta-cell" key={i}
                   >
                     <img src={src} alt={`post ${i + 1}`}
