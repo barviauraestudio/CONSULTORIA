@@ -137,6 +137,7 @@ export default function App() {
   useReveal()
   return (
     <>
+      <div id="bg-canvas" aria-hidden="true" />
       <ScrollBar />
       <Nav />
       <main>
