@@ -22,16 +22,16 @@ export default function PainPoints() {
       <div className="dores-content">
         <div className="reveal">
           <h2 className="dores-title">
-            muitas marcas querem<br />
+            Muitas marcas querem<br />
             crescer, mas<br />
             <em>ficam presas em:</em>
           </h2>
           <ul className="dores-list">
-            <li>falta de clareza sobre como se posicionar com autoridade</li>
-            <li>comunicação que não gera desejo — apenas visibilidade vazia</li>
-            <li>identidade visual sem intenção psicológica real</li>
-            <li>presença digital inconsistente, sem narrativa coerente</li>
-            <li>sensação de que fazem muito e alcançam pouco</li>
+            <li>Falta de clareza sobre como se posicionar com autoridade</li>
+            <li>Comunicação que não gera desejo — apenas visibilidade vazia</li>
+            <li>Identidade visual sem intenção psicológica real</li>
+            <li>Presença digital inconsistente, sem narrativa coerente</li>
+            <li>Sensação de que fazem muito e alcançam pouco</li>
           </ul>
           <a href="https://wa.me/5548996534721" className="dores-cta-link">
             Quero sair dessa situação
