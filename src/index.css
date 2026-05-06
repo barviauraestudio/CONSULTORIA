@@ -20,30 +20,39 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
-/* ── ANIMATED BACKGROUND ── */
+/* ── GLOBAL ANIMATED BACKGROUND ── */
 @keyframes bgShift {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0%   { background-position: 0% 30%; }
+  25%  { background-position: 60% 70%; }
+  50%  { background-position: 100% 30%; }
+  75%  { background-position: 40% 80%; }
+  100% { background-position: 0% 30%; }
 }
-@keyframes bgPulse {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.82; }
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-color: var(--black);
+  background-image:
+    radial-gradient(ellipse 80% 60% at 15% 20%,  rgba(124,92,62,0.22)  0%, transparent 55%),
+    radial-gradient(ellipse 65% 55% at 85% 75%,  rgba(194,113,79,0.16) 0%, transparent 52%),
+    radial-gradient(ellipse 55% 70% at 50% 50%,  rgba(201,169,110,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 45% 45% at 72% 12%,  rgba(140,80,30,0.14)  0%, transparent 48%),
+    radial-gradient(ellipse 35% 40% at 8%  85%,  rgba(90,50,20,0.12)   0%, transparent 44%);
+  background-size: 220% 220%;
+  animation: bgShift 20s ease-in-out infinite;
 }
 
 body {
-  background-color: var(--black);
-  background-image:
-    radial-gradient(ellipse 90% 60% at 15% 20%, rgba(124,92,62,0.13) 0%, transparent 55%),
-    radial-gradient(ellipse 70% 50% at 85% 75%, rgba(194,113,79,0.09) 0%, transparent 50%),
-    radial-gradient(ellipse 50% 80% at 50% 50%, rgba(201,169,110,0.04) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 40% at 70% 10%, rgba(140,80,30,0.07) 0%, transparent 45%);
-  background-size: 220% 220%;
-  animation: bgShift 18s ease-in-out infinite, bgPulse 9s ease-in-out infinite;
+  background: transparent;
   color: var(--text);
   font-family: var(--sans); font-weight: 300; line-height: 1.7;
   overflow-x: hidden; -webkit-font-smoothing: antialiased;
 }
+
+/* Make all sections sit above the fixed bg canvas */
+#nav, main, footer, #scroll-bar, #back-to-top, #audioBtn { position: relative; z-index: 1; }
 
 /* ── SCROLL BAR ── */
 #scroll-bar {
@@ -144,6 +153,7 @@ body {
   align-items: center; justify-content: center; text-align: center;
   padding: clamp(120px,15vw,160px) clamp(20px,5vw,60px) clamp(60px,8vw,100px);
   position: relative; overflow: hidden;
+  background: transparent;
 }
 @keyframes heroGlowShift {
   0%   { opacity: 1;    background-position: 0% 50%; }
@@ -154,10 +164,10 @@ body {
 .hero-bg {
   position: absolute; inset: 0; pointer-events: none;
   background:
-    radial-gradient(ellipse 75% 60% at 50% 38%, rgba(201,169,110,.13) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 45% at 20% 70%, rgba(124,92,62,.14) 0%, transparent 55%),
-    radial-gradient(ellipse 45% 50% at 82% 20%, rgba(194,113,79,.10) 0%, transparent 50%),
-    radial-gradient(ellipse 35% 35% at 65% 85%, rgba(140,80,30,.08) 0%, transparent 45%);
+    radial-gradient(ellipse 75% 60% at 50% 38%, rgba(201,169,110,.18) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 45% at 20% 70%, rgba(124,92,62,.20) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 50% at 82% 20%, rgba(194,113,79,.14) 0%, transparent 50%),
+    radial-gradient(ellipse 35% 35% at 65% 85%, rgba(140,80,30,.12) 0%, transparent 45%);
   background-size: 180% 180%;
   animation: heroGlowShift 14s ease-in-out infinite;
   transition: transform .15s ease-out;
@@ -225,7 +235,8 @@ body {
 .dores-photo {
   position: relative; overflow: hidden;
   min-height: clamp(340px,50vw,640px);
-  background: var(--surface);
+  background: rgba(23,16,15,0.55);
+  backdrop-filter: blur(2px);
   display: flex; align-items: center; justify-content: center;
 }
 .dores-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
@@ -237,7 +248,10 @@ body {
 .photo-placeholder-icon { display: none; }
 .photo-placeholder p { display: none; }
 .dores-content {
-  background: var(--deep);
+  background: rgba(15,10,12,0.55);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-left: 1px solid rgba(201,169,110,0.10);
   padding: clamp(40px,6vw,80px) clamp(24px,5vw,64px);
   display: flex; flex-direction: column; justify-content: center;
 }
@@ -264,7 +278,9 @@ body {
 
 /* ═══════════════ BENEFITS ═══════════════ */
 #beneficios {
-  background: var(--surface);
+  background: rgba(23,16,15,0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: clamp(56px,8vw,100px) clamp(20px,5vw,60px); text-align: center;
 }
 .beneficios-title {
@@ -277,12 +293,15 @@ body {
   gap: clamp(10px,2vw,20px); max-width: 1100px; margin: 0 auto;
 }
 .beneficio-card {
-  border: 1px solid var(--border);
+  border: 1px solid rgba(201,169,110,0.18);
   padding: clamp(22px,3vw,40px) clamp(14px,2vw,28px);
-  background: var(--deep); text-align: center;
-  transition: border-color .35s, transform .35s;
+  background: rgba(30,21,18,0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  text-align: center;
+  transition: border-color .35s, transform .35s, background .35s;
 }
-.beneficio-card:hover { border-color: var(--border2); transform: translateY(-5px); }
+.beneficio-card:hover { border-color: var(--border2); transform: translateY(-5px); background: rgba(30,21,18,0.75); }
 .beneficio-icon {
   width: 44px; height: 44px; margin: 0 auto clamp(12px,2vw,22px);
   border: 1px solid var(--border2);
@@ -293,7 +312,9 @@ body {
 /* ═══════════════ WHAT YOU GAIN ═══════════════ */
 #conquistas { display: grid; grid-template-columns: 1fr 1fr; }
 .conquistas-content {
-  background: var(--black);
+  background: rgba(8,4,6,0.50);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   padding: clamp(40px,6vw,80px) clamp(24px,5vw,72px);
   display: flex; flex-direction: column; justify-content: center;
 }
@@ -324,7 +345,10 @@ body {
 }
 .conquistas-cta:hover { background: var(--gold); color: var(--black); }
 .conquistas-photo {
-  background: var(--surface); min-height: clamp(340px,50vw,640px);
+  background: rgba(23,16,15,0.40);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  min-height: clamp(340px,50vw,640px);
   display: flex; align-items: center; justify-content: center;
   overflow: hidden; position: relative;
 }
@@ -332,7 +356,9 @@ body {
 
 /* ═══════════════ HOW IT WORKS ═══════════════ */
 #como-funciona {
-  background: var(--deep);
+  background: rgba(15,10,12,0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: clamp(56px,8vw,100px) clamp(20px,5vw,60px); text-align: center;
 }
 .como-title {
@@ -345,11 +371,14 @@ body {
   max-width: 980px; margin: 0 auto;
 }
 .como-step {
-  flex: 1; border: 1px solid var(--border);
+  flex: 1; border: 1px solid rgba(201,169,110,0.16);
   padding: clamp(24px,4vw,44px) clamp(18px,3vw,32px);
-  background: var(--surface); text-align: center; transition: border-color .3s;
+  background: rgba(30,21,18,0.52);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  text-align: center; transition: border-color .3s, background .3s;
 }
-.como-step:hover { border-color: var(--border2); }
+.como-step:hover { border-color: var(--border2); background: rgba(30,21,18,0.72); }
 .como-step-icon {
   width: 52px; height: 52px; margin: 0 auto clamp(12px,2vw,22px);
   background: var(--card); border: 1px solid var(--border2);
@@ -367,7 +396,9 @@ body {
 
 /* ═══════════════ RESULTS ═══════════════ */
 #resultados {
-  background: var(--surface);
+  background: rgba(23,16,15,0.42);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   padding: clamp(56px,8vw,100px) clamp(20px,5vw,60px);
 }
 .resultados-title {
@@ -383,12 +414,15 @@ body {
 }
 .resultados-col { display: flex; flex-direction: column; gap: clamp(12px,2vw,24px); }
 .chat-bubble {
-  background: var(--card); border: 1px solid var(--border);
+  background: rgba(30,21,18,0.58);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(201,169,110,0.16);
   padding: clamp(14px,2.5vw,24px); border-radius: 2px;
   font-size: clamp(12px,1.6vw,13px); line-height: 1.75; color: var(--text);
-  transition: border-color .3s;
+  transition: border-color .3s, background .3s;
 }
-.chat-bubble:hover { border-color: var(--border2); }
+.chat-bubble:hover { border-color: var(--border2); background: rgba(30,21,18,0.78); }
 .chat-author {
   font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
   color: var(--gold); margin-top: 10px;
@@ -403,7 +437,9 @@ body {
 
 /* ═══════════════ INVESTMENT ═══════════════ */
 #investimento {
-  background: var(--black);
+  background: rgba(8,4,6,0.48);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   padding: clamp(56px,8vw,100px) clamp(20px,5vw,60px);
 }
 .investimento-inner {
@@ -463,7 +499,12 @@ body {
 }
 
 /* ═══════════════ ABOUT ═══════════════ */
-#sobre { background: var(--deep); padding: clamp(56px,8vw,100px) 0 0; }
+#sobre {
+  background: rgba(15,10,12,0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: clamp(56px,8vw,100px) 0 0;
+}
 .sobre-headline {
   font-family: var(--serif); font-size: clamp(28px,5.5vw,76px);
   font-weight: 300; color: var(--cream); text-align: center;
@@ -474,7 +515,10 @@ body {
 .sobre-photo {
   position: sticky; top: 90px;
   height: clamp(440px,60vw,620px);
-  background: var(--surface); border: 1px solid var(--border);
+  background: rgba(23,16,15,0.50);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center;
   overflow: hidden; position: relative;
 }
@@ -496,7 +540,9 @@ body {
   border-left: 2px solid var(--gold);
   padding: clamp(14px,2.5vw,24px) clamp(18px,3vw,32px);
   margin: clamp(22px,4vw,40px) 0;
-  background: var(--surface);
+  background: rgba(23,16,15,0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   font-family: var(--serif); font-size: clamp(15px,2.2vw,21px);
   font-style: italic; color: var(--goldlt); line-height: 1.6;
 }
@@ -519,7 +565,9 @@ body {
 
 /* ═══════════════ PARTNERS ═══════════════ */
 #marcas {
-  background: var(--surface);
+  background: rgba(23,16,15,0.48);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   padding: clamp(56px,8vw,100px) clamp(20px,5vw,60px);
 }
 .marcas-headline {
@@ -540,15 +588,20 @@ body {
 .marca-item {
   border: 1px solid var(--border);
   padding: clamp(16px,2.5vw,28px) clamp(10px,2vw,20px);
-  text-align: center; background: var(--deep);
+  text-align: center;
+  background: rgba(15,10,12,0.52);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   font-size: clamp(11px,1.5vw,13px); color: var(--muted);
   letter-spacing: .05em; transition: all .3s;
 }
-.marca-item:hover { border-color: var(--border2); color: var(--goldlt); background: var(--card); }
+.marca-item:hover { border-color: var(--border2); color: var(--goldlt); background: rgba(30,21,18,0.72); }
 
 /* ═══════════════ FAQ ═══════════════ */
 #faq {
-  background: var(--deep);
+  background: rgba(15,10,12,0.44);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: clamp(56px,8vw,100px) clamp(20px,5vw,60px);
 }
 .faq-title {
@@ -558,7 +611,7 @@ body {
 }
 .faq-title em { color: var(--gold); font-style: italic; }
 .faq-list { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 2px; }
-.faq-item { border: 1px solid var(--border); background: var(--surface); overflow: hidden; transition: border-color .3s; }
+.faq-item { border: 1px solid var(--border); background: rgba(23,16,15,0.55); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); overflow: hidden; transition: border-color .3s; }
 .faq-item.open { border-color: var(--border2); }
 .faq-q {
   width: 100%; display: flex; align-items: center; justify-content: space-between;
@@ -584,7 +637,9 @@ body {
 
 /* ═══════════════ CLOSING ═══════════════ */
 #closing {
-  background: var(--black);
+  background: rgba(8,4,6,0.50);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   padding: clamp(72px,10vw,120px) clamp(20px,5vw,60px); text-align: center;
 }
 .closing-text {
@@ -608,7 +663,10 @@ body {
 
 /* ═══════════════ FOOTER ═══════════════ */
 footer {
-  background: var(--deep); border-top: 1px solid var(--border);
+  background: rgba(15,10,12,0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid var(--border);
   padding: clamp(24px,4vw,44px) clamp(20px,5vw,60px);
   display: flex; align-items: center; justify-content: space-between; gap: 20px;
 }
