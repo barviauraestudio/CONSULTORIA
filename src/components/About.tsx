@@ -39,7 +39,7 @@ export default function About() {
           <div className="sobre-content">
             <div className="reveal">
               <h3 className="sobre-greeting">
-                prazer,<br />
+                Prazer,<br />
                 <em>Arthur Bernardo.</em>
               </h3>
 
