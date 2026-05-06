@@ -17,7 +17,7 @@ export default function Partners() {
       <div className="cw">
         <div className="reveal">
           <h2 className="marcas-headline">
-            marcas que já <em>confiam</em><br />no meu trabalho:
+            Marcas que já <em>confiam</em><br />no meu trabalho:
           </h2>
         </div>
 
