@@ -137,7 +137,14 @@ export default function App() {
   useReveal()
   return (
     <>
-      <div id="bg-canvas" aria-hidden="true" />
+      {/* Fixed animated background */}
+      <div id="bg-layer" aria-hidden="true">
+        <div className="blob b1" />
+        <div className="blob b2" />
+        <div className="blob b3" />
+        <div className="blob b4" />
+      </div>
+      <div id="bg-grain" aria-hidden="true" />
       <ScrollBar />
       <Nav />
       <main>
