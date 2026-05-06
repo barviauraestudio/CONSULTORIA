@@ -19,8 +19,28 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+
+/* ── ANIMATED BACKGROUND ── */
+@keyframes bgShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes bgPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.82; }
+}
+
 body {
-  background: var(--black); color: var(--text);
+  background-color: var(--black);
+  background-image:
+    radial-gradient(ellipse 90% 60% at 15% 20%, rgba(124,92,62,0.13) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 85% 75%, rgba(194,113,79,0.09) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 80% at 50% 50%, rgba(201,169,110,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 70% 10%, rgba(140,80,30,0.07) 0%, transparent 45%);
+  background-size: 220% 220%;
+  animation: bgShift 18s ease-in-out infinite, bgPulse 9s ease-in-out infinite;
+  color: var(--text);
   font-family: var(--sans); font-weight: 300; line-height: 1.7;
   overflow-x: hidden; -webkit-font-smoothing: antialiased;
 }
@@ -125,11 +145,21 @@ body {
   padding: clamp(120px,15vw,160px) clamp(20px,5vw,60px) clamp(60px,8vw,100px);
   position: relative; overflow: hidden;
 }
+@keyframes heroGlowShift {
+  0%   { opacity: 1;    background-position: 0% 50%; }
+  33%  { opacity: 0.88; background-position: 60% 30%; }
+  66%  { opacity: 0.95; background-position: 100% 70%; }
+  100% { opacity: 1;    background-position: 0% 50%; }
+}
 .hero-bg {
   position: absolute; inset: 0; pointer-events: none;
   background:
-    radial-gradient(ellipse 70% 55% at 50% 40%, rgba(201,169,110,.07) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 40% at 80% 80%, rgba(140,80,30,.05) 0%, transparent 55%);
+    radial-gradient(ellipse 75% 60% at 50% 38%, rgba(201,169,110,.13) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 45% at 20% 70%, rgba(124,92,62,.14) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 50% at 82% 20%, rgba(194,113,79,.10) 0%, transparent 50%),
+    radial-gradient(ellipse 35% 35% at 65% 85%, rgba(140,80,30,.08) 0%, transparent 45%);
+  background-size: 180% 180%;
+  animation: heroGlowShift 14s ease-in-out infinite;
   transition: transform .15s ease-out;
 }
 .hero-grain {
@@ -172,7 +202,7 @@ body {
 }
 .hero-stat { text-align: center; }
 .hero-stat-num {
-  font-family: var(--serif); font-size: clamp(30px,5vw,52px);
+  font-family: var(--sans); font-size: clamp(30px,5vw,52px);
   font-weight: 300; color: var(--gold); line-height: 1;
 }
 .hero-stat-label {
@@ -202,12 +232,10 @@ body {
 .photo-placeholder {
   position: absolute; inset: 0;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: var(--muted);
+  pointer-events: none;
 }
-.photo-placeholder-icon {
-  width: 56px; height: 56px; border: 1px solid var(--border2);
-  display: flex; align-items: center; justify-content: center; color: var(--gold);
-}
-.photo-placeholder p { font-size: 10px; letter-spacing: .25em; text-transform: uppercase; }
+.photo-placeholder-icon { display: none; }
+.photo-placeholder p { display: none; }
 .dores-content {
   background: var(--deep);
   padding: clamp(40px,6vw,80px) clamp(24px,5vw,64px);
@@ -395,7 +423,7 @@ body {
 }
 .investimento-sub { font-size: clamp(12px,1.5vw,14px); color: var(--muted); margin-top: 10px; }
 .investimento-price {
-  font-family: var(--serif); font-size: clamp(22px,3.5vw,46px);
+  font-family: var(--sans); font-size: clamp(22px,3.5vw,46px);
   font-weight: 300; color: var(--gold); margin-top: 18px; line-height: 1.3;
 }
 .investimento-ou {
@@ -403,7 +431,7 @@ body {
   color: var(--muted); margin: 10px 0;
 }
 .investimento-avista {
-  font-family: var(--serif); font-size: clamp(18px,2.5vw,36px);
+  font-family: var(--sans); font-size: clamp(18px,2.5vw,36px);
   font-weight: 300; color: var(--cream);
 }
 .investimento-cta {
@@ -506,9 +534,9 @@ body {
 }
 .marcas-grid {
   display: grid; grid-template-columns: repeat(4,1fr);
-  gap: 2px; max-width: 1000px; margin: 0 auto clamp(32px,5vw,56px);
+  gap: 2px; max-width: 1000px; margin: 0 auto;
 }
-.marcas-grid:last-child { margin-bottom: 0; max-width: 600px; }
+.marcas-grid:last-child { margin-bottom: 0; max-width: 1000px; }
 .marca-item {
   border: 1px solid var(--border);
   padding: clamp(16px,2.5vw,28px) clamp(10px,2vw,20px);
