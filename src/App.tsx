@@ -10,6 +10,7 @@ import About from './components/About'
 import Partners from './components/Partners'
 import FAQ from './components/FAQ'
 import { Closing, Footer } from './components/ClosingFooter'
+import { useBlurSiblings } from './components/useBlurSiblings'
 
 /* ── SCROLL PROGRESS BAR ── */
 function ScrollBar() {
@@ -38,7 +39,6 @@ function Nav() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Lock body scroll when menu open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
@@ -69,13 +69,12 @@ function Nav() {
         </button>
       </nav>
 
-      {/* Mobile overlay menu */}
       <div className={`mobile-menu${menuOpen ? ' open' : ''}`}>
-        <a href="#dores"          onClick={close}>Para você</a>
-        <a href="#como-funciona"  onClick={close}>Como Funciona</a>
-        <a href="#sobre"          onClick={close}>Sobre</a>
-        <a href="#marcas"         onClick={close}>Marcas</a>
-        <a href="#faq"            onClick={close}>FAQ</a>
+        <a href="#dores"         onClick={close}>Para você</a>
+        <a href="#como-funciona" onClick={close}>Como Funciona</a>
+        <a href="#sobre"         onClick={close}>Sobre</a>
+        <a href="#marcas"        onClick={close}>Marcas</a>
+        <a href="#faq"           onClick={close}>FAQ</a>
         <div className="mobile-menu-line" />
         <a href="https://wa.me/5548996534721" className="mobile-cta" onClick={close}>
           Falar com Arthur
@@ -135,9 +134,14 @@ function useReveal() {
 /* ── APP ── */
 export default function App() {
   useReveal()
+
+  // Blur siblings — mobile touch (desktop usa CSS puro no index.css)
+  useBlurSiblings('.beneficios-grid', '.beneficio-card')
+  useBlurSiblings('.faq-list', '.faq-item')
+  useBlurSiblings('.resultados-layout', '.chat-bubble')
+
   return (
     <>
-      {/* Fixed animated background */}
       <div id="bg-layer" aria-hidden="true">
         <div className="blob b1" />
         <div className="blob b2" />
