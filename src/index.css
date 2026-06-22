@@ -924,34 +924,41 @@ footer {
    ══════════════════════════════════════════════ */
 
 /* Benefits */
-.beneficios-grid:hover .beneficio-card {
+.beneficios-grid:hover .beneficio-card,
+.beneficios-grid.touch-active .beneficio-card {
   filter: blur(2px);
   opacity: 0.6;
   transform: scale(0.97);
 }
-.beneficios-grid:hover .beneficio-card:hover {
+.beneficios-grid:hover .beneficio-card:hover,
+.beneficios-grid.touch-active .beneficio-card.touch-focus {
   filter: blur(0px) !important;
   opacity: 1 !important;
   transform: translateY(-7px) scale(1.02) !important;
 }
 
 /* FAQ */
-.faq-list:hover .faq-item {
+.faq-list:hover .faq-item,
+.faq-list.touch-active .faq-item {
   filter: blur(1.5px);
   opacity: 0.55;
 }
 .faq-list:hover .faq-item:hover,
-.faq-list:hover .faq-item.open {
+.faq-list:hover .faq-item.open,
+.faq-list.touch-active .faq-item.touch-focus,
+.faq-list.touch-active .faq-item.open {
   filter: blur(0px) !important;
   opacity: 1 !important;
 }
 
 /* Depoimentos — blur entre colunas, não dentro de cada coluna */
-.resultados-layout:hover .chat-bubble {
+.resultados-layout:hover .chat-bubble,
+.resultados-layout.touch-active .chat-bubble {
   filter: blur(2px);
   opacity: 0.5;
 }
-.resultados-layout:hover .chat-bubble:hover {
+.resultados-layout:hover .chat-bubble:hover,
+.resultados-layout.touch-active .chat-bubble.touch-focus {
   filter: blur(0px) !important;
   opacity: 1 !important;
 }
