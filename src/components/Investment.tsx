@@ -10,7 +10,7 @@ export default function Investment() {
               <p className="investimento-label">Investimento</p>
               <h2 className="investimento-title">consultoria</h2>
               <p className="investimento-sub">por apenas</p>
-              <p className="investimento-price">12 x de R$ 197</p>
+              <p className="investimento-price">Parcelamento a combinar</p>
               <p className="investimento-ou">ou</p>
               <p className="investimento-avista">R$ 1.997 à vista</p>
               <a href="https://wa.me/5548996534721" className="investimento-cta">
